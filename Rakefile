@@ -1,40 +1,24 @@
-require 'rubygems'
-require 'rake/gempackagetask'
-require 'rubygems/specification'
-require 'date'
-require 'fileutils'
-require 'rbconfig'
-
-GEM = "ffi"
-GEM_VERSION = "0.2.0"
-AUTHOR = "Wayne Meissner"
-EMAIL = "wmeissner@gmail.com"
-HOMEPAGE = "http://kenai.com/projects/ruby-ffi"
-SUMMARY = "A Ruby foreign function interface"
-
-spec = Gem::Specification.new do |s|
-  s.name = GEM
-  s.version = GEM_VERSION
-  s.platform = 'java'
-  s.has_rdoc = false
-  s.extra_rdoc_files = ["README", "LICENSE"]
-  s.summary = SUMMARY
-  s.description = s.summary
-  s.author = AUTHOR
-  s.email = EMAIL
-  s.homepage = HOMEPAGE
-  s.rubyforge_project = 'ffi'
-  s.require_path = 'lib'
-  s.files = %w(README LICENSE Rakefile) + Dir.glob("lib/**/*")
+begin
+  require 'bones'
+  Bones.setup
+rescue LoadError
+  load 'tasks/setup.rb'
 end
 
-Rake::GemPackageTask.new(spec) do |pkg|
-  pkg.gem_spec = spec
-end
+task :default => 'gem:repackage'
 
-desc "create a gemspec file"
-task :make_spec do
-  File.open("#{GEM}.gemspec", "w") do |file|
-    file.puts spec.to_ruby
-  end
-end
+PROJ.name = 'ffi'
+PROJ.authors = "Wayne Meissner"
+PROJ.email = "wmeissner@gmail.com"
+PROJ.url = "http://kenai.com/projects/ruby-ffi"
+PROJ.version = "0.2.0"
+PROJ.rubyforge.name = 'ffi'
+PROJ.svn.path = 'ffi'
+PROJ.summary = "A Ruby foreign: function interface"
+PROJ.exclude << "\\.hg"
+PROJ.notes.exclude = %w(^README\.txt$ History\.txt ^data/ ^nbproject/)
+PROJ.gem.files = %w(README.txt LICENSE Rakefile) + Dir.glob("lib/**/*")
+PROJ.gem.extras['platform']=['java']
+PROJ.gem.extras['has_rdoc']=false
+PROJ.gem.need_tar = false
+PROJ.gem.need_zip = false
