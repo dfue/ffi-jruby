@@ -8,16 +8,16 @@ end
 task :default => 'gem:repackage'
 
 PROJ.name = 'ffi'
-PROJ.authors = "Wayne Meissner"
-PROJ.email = "wmeissner@gmail.com"
+PROJ.authors = "JRuby Project"
+PROJ.email = "dev@ruby-ffi.kenai.com"
 PROJ.url = "http://kenai.com/projects/ruby-ffi"
-PROJ.version = "0.2.0"
+PROJ.version = "0.2.1"
 PROJ.rubyforge.name = 'ffi'
 PROJ.svn.path = 'ffi'
 PROJ.summary = "A Ruby foreign function interface"
 PROJ.exclude << [ "\\.hg", "^nbproject/" ]
 PROJ.notes.exclude = %w(^README\.txt$ History\.txt ^data/ ^nbproject/)
-PROJ.gem.files = %w(README.txt LICENSE Rakefile) + Dir.glob("lib/**/*")
+PROJ.gem.files = %w(README.txt History.txt LICENSE Rakefile) + Dir.glob("lib/**/*")
 PROJ.gem.extras['platform']=['java']
 PROJ.gem.extras['has_rdoc']=false
 PROJ.gem.need_tar = false
