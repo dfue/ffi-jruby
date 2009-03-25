@@ -18,4 +18,27 @@ module FFI
     end unless method_defined?(:write_array_of_pointer)
 
   end
+
+  # Fix for RUBY-3527
+  if JRUBY_VERSION >= "1.2.0" && JRUBY_VERSION < "1.3.0"
+    module Library
+      def ffi_lib(*names)
+        ffi_libs = []
+        names.each do |name|
+          [ name, FFI.map_library_name(name) ].each do |libname|
+            begin
+              lib = FFI::DynamicLibrary.open(libname, FFI::DynamicLibrary::RTLD_LAZY | FFI::DynamicLibrary::RTLD_GLOBAL)
+              if lib
+                ffi_libs << lib
+                break
+              end
+            rescue LoadError => ex
+            end
+          end
+        end
+        raise LoadError, "Could not open any of [#{names.join(", ")}]" if ffi_libs.empty?
+        @ffi_libs = ffi_libs
+      end
+    end
+  end
 end
