@@ -17,7 +17,7 @@ PROJ.svn.path = 'ffi'
 PROJ.summary = "A Ruby foreign function interface"
 PROJ.exclude << [ "\\.hg", "^nbproject/" ]
 PROJ.notes.exclude = %w(^README\.txt$ History\.txt ^data/ ^nbproject/)
-PROJ.gem.files = %w(README.txt History.txt LICENSE Rakefile) + Dir.glob("lib/**/*")
+PROJ.gem.files = %w(README.txt History.txt LICENSE Rakefile) + Dir.glob("lib/**/*") + Dir.glob("tasks/*")
 PROJ.gem.extras['platform']=['java']
 PROJ.gem.extras['has_rdoc']=false
 PROJ.gem.need_tar = false
