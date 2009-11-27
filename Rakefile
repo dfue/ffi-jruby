@@ -9,9 +9,9 @@ task :default => 'gem:repackage'
 
 PROJ.name = 'ffi'
 PROJ.authors = "JRuby Project"
-PROJ.email = "dev@ruby-ffi.kenai.com"
-PROJ.url = "http://kenai.com/projects/ruby-ffi"
-PROJ.version = "0.5.3"
+PROJ.email = "ruby-ffi@groups.google.com"
+PROJ.url = "http://wiki.github.com/ffi/ffi"
+PROJ.version = "0.5.4"
 PROJ.rubyforge.name = 'ffi'
 PROJ.svn.path = 'ffi'
 PROJ.summary = "A Ruby foreign function interface"
